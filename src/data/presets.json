@@ -1,0 +1,22 @@
+{
+    "presets": [
+        {
+            "id": "full_stack_dev",
+            "name": "Full-Stack Developer",
+            "job_descriptions": [
+                "**Role:** Full-Stack Developer\n**Experience Required:** 3+ years\n**Degree:** BS in Computer Science or equivalent\n\n**Responsibilities:**\n- Design and develop scalable web applications.\n- Manage both front-end and back-end integration.\n\n**Required Technical Skills:**\n- React, Node.js, and PostgreSQL.\n- Strong understanding of Docker and CI/CD pipelines.\n- Familiarity with Agile workflows.",
+                "**Role:** Full-Stack Engineer\n**Experience Required:** 2-5 years\n**Education:** Coding Bootcamp or CS Degree\n\n**About the Role:**\nJoin our high-paced environment building out internal and external product suites.\n\n**Key Qualifications:**\n- Strong Python/Django backend skills.\n- Frontend proficiency in React and modern UI libraries.\n- AWS experience is a huge plus.\n- Git version control.",
+                "**Role:** Senior Full-Stack Position\n**Experience:** 5+ years building production applications\n\n**Requirements:**\n- Expert in modern JavaScript frameworks (TypeScript, React, Next.js).\n- Backend experience with Supabase or Firebase.\n- Advanced CSS skills, Tailwind CSS experience is essential.\n- Bachelor's degree preferred but not required if portfolio is strong."
+            ]
+        },
+        {
+            "id": "data_scientist",
+            "name": "Data Scientist",
+            "job_descriptions": [
+                "**Role:** Data Scientist\n**Experience:** 3+ years \n**Education:** Master's degree in Data Science, Statistics, or related field\n\n**Requirements:**\n- Expert in Python, Pandas, and Scikit-learn.\n- Advanced SQL experience required for complex data querying.\n- Experience with PyTorch or TensorFlow is highly desired.\n- Strong ability to communicate data insights.",
+                "**Role:** Machine Learning Engineer / Data Scientist\n**Experience:** 2+ years\n\n**What you'll do:**\n- Develop predictive models and deploy them to production.\n\n**Key Skills:**\n- Must know Python deeply.\n- Experience with AWS SageMaker and SQL.\n- Natural Language Processing (NLP) experience is a big plus.\n- BS or higher in highly quantitative field.",
+                "**Role:** Senior Data Scientist\n**Experience:** 5+ years\n**Degree:** PhD or MS in quantitative discipline\n\n**Requirements:**\n- R or Python programming.\n- Strong statistical foundation and A/B testing experience.\n- Experience with Snowflake data warehousing.\n- Git code management in team environments."
+            ]
+        }
+    ]
+}
