@@ -1,15 +1,12 @@
 [theme]
-# Primary accent color for interactive elements (e.g. Buttons, Slider rails)
-primaryColor = "#6366f1" 
+primaryColor            = "#6366f1"
+backgroundColor         = "#0a0f1e"
+secondaryBackgroundColor = "#0d1424"
+textColor               = "#f1f5f9"
+font                    = "sans serif"
 
-# Background color for the main content area
-backgroundColor = "#0f172a" 
+[server]
+headless = true
 
-# Background color for sidebar and most interactive widgets
-secondaryBackgroundColor = "#1e293b" 
-
-# Color used for almost all text
-textColor = "#f8fafc" 
-
-# Font family for all text in the app
-font = "sans serif"
+[browser]
+gatherUsageStats = false

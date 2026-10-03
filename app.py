@@ -4,300 +4,339 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import streamlit as st
 from dotenv import load_dotenv
-
-# Load environment variables
 load_dotenv()
 
-# Configure Streamlit page
 st.set_page_config(
-    page_title="AI Career Agent",
+    page_title="SkillGap AI",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Safe UI Enhancements
+# ── Global Design System ──────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    /* Safe Action Buttons */
-    .stButton>button {
-        border-radius: 30px !important; /* Pill shaped */
-        border: none !important;
-        background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%) !important; /* Emerald to Blue */
-        color: white !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.5px;
-        transition: transform 0.2s !important;
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
-    }
-    .stButton>button:hover {
-        transform: translateY(-2px) !important;
-        color: white !important;
-    }
-    
-    /* Differentiated UI Styles */
-    .feature-card {
-        background: rgba(255,255,255,0.02); /* Glass look */
-        border: 1px solid rgba(255,255,255,0.08);
-        border-left: 4px solid #3b82f6; /* Accent left border */
-        border-radius: 8px; /* Sharper corners */
-        padding: 18px 24px;
-        margin-bottom: 20px;
-        transition: all 0.3s ease;
-    }
-    .feature-card:hover {
-        background: rgba(255,255,255,0.05);
-        transform: translateX(5px);
-    }
-    .feature-text h4 {
-        color: #f8fafc;
-        margin: 0 0 6px 0;
-        font-size: 1.1rem;
-        font-weight: 600;
-        letter-spacing: -0.3px;
-    }
-    .feature-text p {
-        color: #cbd5e1;
-        margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-    .auth-header-circle {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #10b981, #0ea5e9);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        margin-bottom: 20px;
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-    }
-    .pill-badge {
-        background: transparent;
-        color: #38bdf8;
-        padding: 4px 12px;
-        border-radius: 4px;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        display: inline-block;
-        margin-bottom: 20px;
-        border: 1px solid #38bdf8;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── Base ── */
+html, body, [class*="css"] { font-family: 'Inter', sans-serif !important; }
+[data-testid="stAppViewContainer"] { background: #070b14; }
+.block-container { padding: 2.5rem 2.5rem 3rem 2.5rem !important; max-width: 1200px; }
+
+/* ── Sidebar ── */
+[data-testid="stSidebar"] {
+    background: #0c1220 !important;
+    border-right: 1px solid rgba(255,255,255,0.05) !important;
+}
+[data-testid="stSidebar"] * { color: #94a3b8 !important; }
+section[data-testid="stSidebarContent"] { padding: 1.8rem 1.2rem !important; }
+
+/* ── Buttons ── */
+.stButton > button {
+    font-family: 'Inter', sans-serif !important;
+    border-radius: 10px !important;
+    border: none !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    padding: 0.6rem 1.5rem !important;
+    transition: all 0.2s cubic-bezier(0.4,0,0.2,1) !important;
+    letter-spacing: 0.01em !important;
+}
+.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(99,102,241,0.4) !important;
+}
+.stButton > button[kind="primary"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 28px rgba(99,102,241,0.55) !important;
+}
+.stButton > button[kind="primary"]:active { transform: translateY(0px) !important; }
+.stButton > button[kind="secondary"] {
+    background: rgba(255,255,255,0.05) !important;
+    color: #cbd5e1 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+.stButton > button[kind="secondary"]:hover {
+    background: rgba(255,255,255,0.09) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    color: #f1f5f9 !important;
+}
+.stButton > button:disabled {
+    opacity: 0.35 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ── Inputs ── */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div > div {
+    font-family: 'Inter', sans-serif !important;
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    border-radius: 10px !important;
+    color: #f1f5f9 !important;
+    font-size: 0.9rem !important;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: rgba(99,102,241,0.6) !important;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.12) !important;
+    outline: none !important;
+}
+.stSelectbox > div > div { border-radius: 10px !important; }
+
+/* ── Selectbox dropdown ── */
+[data-baseweb="select"] > div {
+    background: #0f1829 !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    border-radius: 10px !important;
+}
+[data-baseweb="popover"] { background: #0f1829 !important; border-radius: 10px !important; }
+[role="listbox"] { background: #0f1829 !important; }
+[role="option"]:hover { background: rgba(99,102,241,0.12) !important; }
+
+/* ── File uploader ── */
+[data-testid="stFileUploader"] {
+    background: rgba(99,102,241,0.04) !important;
+    border: 1.5px dashed rgba(99,102,241,0.35) !important;
+    border-radius: 12px !important;
+    transition: all 0.2s ease !important;
+}
+[data-testid="stFileUploader"]:hover {
+    border-color: rgba(99,102,241,0.65) !important;
+    background: rgba(99,102,241,0.07) !important;
+}
+
+/* ── Tabs ── */
+div.stTabs [data-baseweb="tab-list"] {
+    gap: 2px;
+    background: rgba(255,255,255,0.025);
+    padding: 5px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+div.stTabs [data-baseweb="tab"] {
+    border-radius: 8px !important;
+    padding: 9px 20px !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    color: #64748b !important;
+    background: transparent !important;
+    border: none !important;
+    transition: all 0.15s ease !important;
+    letter-spacing: 0.01em !important;
+}
+div.stTabs [aria-selected="true"] {
+    background: rgba(99,102,241,0.18) !important;
+    color: #a5b4fc !important;
+    font-weight: 600 !important;
+}
+div.stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
+    color: #94a3b8 !important;
+    background: rgba(255,255,255,0.04) !important;
+}
+
+/* ── Expander ── */
+[data-testid="stExpander"] {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    border-radius: 10px !important;
+}
+[data-testid="stExpander"]:hover {
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+/* ── Metrics ── */
+[data-testid="stMetric"] {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 20px 22px;
+    transition: all 0.2s ease;
+}
+[data-testid="stMetric"]:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+    transform: translateY(-1px);
+}
+[data-testid="stMetricValue"] { color: #f1f5f9 !important; font-size: 2rem !important; font-weight: 700 !important; }
+[data-testid="stMetricLabel"] { color: #64748b !important; font-size: 0.78rem !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ── Alerts ── */
+.stSuccess, .stWarning, .stError, .stInfo { border-radius: 10px !important; font-size: 0.875rem !important; }
+
+/* ── Dataframe ── */
+[data-testid="stDataFrame"] { border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+
+/* ── Divider ── */
+hr { border-color: rgba(255,255,255,0.05) !important; margin: 1.5rem 0 !important; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+/* ── Radio ── */
+.stRadio label { font-size: 0.875rem !important; color: #94a3b8 !important; }
+.stRadio [data-testid="stMarkdownContainer"] p { font-size: 0.875rem !important; }
+
+/* ── Spinner ── */
+.stSpinner > div { color: #a5b4fc !important; font-size: 0.875rem !important; }
+
+/* ── Chat ── */
+[data-testid="stChatInput"] > div {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    border-radius: 12px !important;
+}
+[data-testid="stChatMessage"] {
+    background: rgba(255,255,255,0.02) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    margin-bottom: 10px !important;
+}
+
+/* ── Progress bar ── */
+[data-testid="stProgress"] > div > div {
+    background: linear-gradient(90deg, #6366f1, #8b5cf6) !important;
+    border-radius: 4px !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
 from src.ui.dashboard import render_dashboard
-from src.db.supabase_client import get_supabase_client
 
-def render_auth_page():
-    # Robust Custom HTML/CSS that doesn't depend on fragile Streamlit 'data-testid' tags.
-    st.markdown("""
-        <style>
-        .glow-title {
-            font-size: 4.5rem;
-            font-weight: 900;
-            background: -webkit-linear-gradient(45deg, #0ea5e9, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            letter-spacing: -3px;
-            margin-bottom: 0px;
-            padding-bottom: 10px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 3.5rem;
-            letter-spacing: 1px;
-        }
-        .feature-box {
-            background: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 4px solid #0ea5e9;
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
-        }
-        .feature-box:hover {
-            transform: translateY(-5px);
-            background: rgba(30, 41, 59, 0.6);
-        }
-        .feature-box.purple { border-top-color: #8b5cf6; }
-        .feature-box.pink { border-top-color: #ec4899; }
-        .feature-box.emerald { border-top-color: #10b981; }
-        
-        div.stTabs [data-baseweb="tab-list"] {
-            justify-content: center !important;
-            gap: 20px;
-            margin-bottom: 15px;
-        }
-        div.stTabs [aria-selected="true"] {
-            border-bottom: 3px solid #0ea5e9 !important;
-            color: white !important;
-        }
-        </style>
-        
-        <h1 class="glow-title">NeuralCore <span style="font-size: 2.5rem; vertical-align: super; background: none; -webkit-text-fill-color: #0ea5e9;">OS</span></h1>
-        <p class="subtitle">Next-Generation Autonomous Career Intelligence</p>
-    """, unsafe_allow_html=True)
-    
-    col1, col_center, col2 = st.columns([1, 1.4, 1])
-    
-    with col1:
+
+def render_sidebar():
+    with st.sidebar:
+        # Brand
         st.markdown("""
-            <div class="feature-box">
-                <div style="font-size: 2.2rem; margin-bottom: 10px;">🧩</div>
-                <h4 style="color:#f8fafc; font-size:1.15rem; margin-bottom:5px; font-weight: 800;">Precision Match</h4>
-                <p style="color:#94a3b8; font-size:0.95rem; line-height: 1.4;">Map unstructured resume skills dynamically directly to complex market tensors.</p>
-            </div>
-            <div class="feature-box purple">
-                <div style="font-size: 2.2rem; margin-bottom: 10px;">⚡</div>
-                <h4 style="color:#f8fafc; font-size:1.15rem; margin-bottom:5px; font-weight: 800;">Gemini Inference</h4>
-                <p style="color:#94a3b8; font-size:0.95rem; line-height: 1.4;">Powered natively by Google's advanced multimodal LLM architecture framework.</p>
+            <div style="margin-bottom:2rem;">
+                <div style="font-size:1.35rem;font-weight:800;color:#f1f5f9;
+                            letter-spacing:-0.5px;margin-bottom:2px;">
+                    ⚡ SkillGap AI
+                </div>
+                <div style="font-size:0.75rem;color:#334155;font-weight:500;
+                            letter-spacing:0.05em;text-transform:uppercase;">
+                    Career Intelligence
+                </div>
             </div>
         """, unsafe_allow_html=True)
-        
-    with col_center:
-        with st.container():
-            tab_in, tab_up, tab_admin = st.tabs(["LOG IN", "REGISTER", "ADMINISTRATOR"])
-            
-            with tab_in:
-                st.markdown("<br>", unsafe_allow_html=True)
-                login_email = st.text_input("EMAIL ADDRESS", placeholder="candidate@neuralcore.ai", key="login_email")
-                login_password = st.text_input("PASSWORD", type="password", key="login_pass")
-                st.markdown("<br>", unsafe_allow_html=True)
-                
-                if st.button("Authenticate Platform", type="primary", use_container_width=True):
-                    if not login_email or not login_password:
-                        st.error("Credentials required.")
-                    else:
-                        client = get_supabase_client()
-                        if client:
-                            try:
-                                res = client.auth.sign_in_with_password({"email": login_email, "password": login_password})
-                                st.session_state["authenticated"] = True
-                                st.session_state["user_email"] = login_email
-                                user_metadata = res.user.user_metadata if res.user else {}
-                                st.session_state["user_name"] = user_metadata.get("full_name", login_email.split('@')[0])
-                                st.rerun()
-                            except Exception as e:
-                                st.error(f"Authentication Failed: {e}")
-                        else:
-                            st.session_state["authenticated"] = True
-                            st.session_state["user_email"] = login_email
-                            st.session_state["user_name"] = "Demo User"
-                            st.rerun()
-                            
-            with tab_up:
-                st.markdown("<br>", unsafe_allow_html=True)
-                full_name = st.text_input("FULL NAME", placeholder="Jane Doe")
-                profession = st.text_input("TARGET ALIGNMENT", placeholder="Data Scientist")
-                reg_email = st.text_input("ACCOUNT EMAIL", placeholder="create@neuralcore.ai", key="reg_email")
-                reg_password = st.text_input("SECURE PASSWORD", type="password", key="reg_pass")
-                st.markdown("<br>", unsafe_allow_html=True)
-                
-                if st.button("Initialize Deep Profile", type="primary", use_container_width=True):
-                    if not reg_email or not reg_password or not full_name:
-                        st.error("Missing required metadata.")
-                    else:
-                        client = get_supabase_client()
-                        if client:
-                            try:
-                                res = client.auth.sign_up({
-                                    "email": reg_email, 
-                                    "password": reg_password,
-                                    "options": {"data": {"full_name": full_name, "profession": profession}}
-                                })
-                                st.success("Initialization valid. Proceed to LOG IN.")
-                            except Exception as e:
-                                st.error(f"Registration Failed: {e}")
-                        else:
-                            st.warning("Systems offline in preview mode.")
-                            
-            with tab_admin:
-                st.markdown("<br>", unsafe_allow_html=True)
-                st.error("Authorized personnel only. Intrusions will be logged to telemetry engine.")
-                
-                admin_email = st.text_input("OPERATOR ID", placeholder="sysadmin@neuralcore.ai", key="admin_e")
-                admin_pass = st.text_input("PASSPHRASE", type="password", key="admin_p")
-                admin_key = st.text_input("ROOT SECRETS", type="password", key="admin_k")
-                st.markdown("<br>", unsafe_allow_html=True)
-                
-                if st.button("Establish Root Uplink", type="primary", use_container_width=True):
-                    system_key = os.getenv("ADMIN_SECRET_KEY")
-                    if admin_key == system_key and system_key:
-                        st.session_state["authenticated"] = True
-                        st.session_state["user_email"] = admin_email
-                        st.session_state["is_admin_session"] = True
-                        st.rerun()
-                    else:
-                        st.error("Unauthorized. NeuralCore root validation failed.")
-                        
-    with col2:
+
+        st.divider()
+
+        # How it works
         st.markdown("""
-            <div class="feature-box pink">
-                <div style="font-size: 2.2rem; margin-bottom: 10px;">🗺️</div>
-                <h4 style="color:#f8fafc; font-size:1.15rem; margin-bottom:5px; font-weight: 800;">Autonomous Action</h4>
-                <p style="color:#94a3b8; font-size:0.95rem; line-height: 1.4;">Generates hyper-personalized tactical project roadmaps to bridge gaps.</p>
+            <div style="margin-bottom:1.5rem;">
+                <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;
+                            text-transform:uppercase;color:#334155;margin-bottom:12px;">
+                    How it works
+                </div>
+        """, unsafe_allow_html=True)
+
+        steps = [
+            ("01", "#6366f1", "Choose a role", "Pick from 6 industry presets or paste your own JD"),
+            ("02", "#10b981", "Upload resume", "PDF or plain text — we handle both"),
+            ("03", "#f59e0b", "Get analysis",  "AI maps your skills against market demand"),
+            ("04", "#8b5cf6", "Follow roadmap","Close gaps with targeted micro-projects"),
+        ]
+        for num, color, title, desc in steps:
+            st.markdown(f"""
+                <div style="display:flex;gap:10px;margin-bottom:14px;align-items:flex-start;">
+                    <div style="min-width:22px;height:22px;background:{color}22;
+                                border:1px solid {color}55;border-radius:6px;
+                                display:flex;align-items:center;justify-content:center;
+                                font-size:0.65rem;font-weight:700;color:{color};
+                                margin-top:1px;">{num}</div>
+                    <div>
+                        <div style="font-size:0.82rem;font-weight:600;color:#cbd5e1;
+                                    margin-bottom:1px;">{title}</div>
+                        <div style="font-size:0.75rem;color:#475569;line-height:1.4;">{desc}</div>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("</div>", unsafe_allow_html=True)
+        st.divider()
+
+        # Analysis summary (post-analysis)
+        if st.session_state.get("analysis_complete"):
+            score      = st.session_state.get("readiness_score", 0)
+            gap_matrix = st.session_state.get("gap_matrix", [])
+            high_p     = sum(1 for g in gap_matrix if g.get("is_high_priority"))
+            missing    = sum(1 for g in gap_matrix if g["evidence_level"] == 0)
+            color      = "#10b981" if score >= 70 else "#f59e0b" if score >= 40 else "#ef4444"
+
+            st.markdown(f"""
+                <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+                            border-radius:12px;padding:16px;margin-bottom:14px;">
+                    <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;
+                                text-transform:uppercase;color:#334155;margin-bottom:10px;">
+                        Last Analysis
+                    </div>
+                    <div style="font-size:2rem;font-weight:800;color:{color};
+                                margin-bottom:4px;">{score}%</div>
+                    <div style="font-size:0.75rem;color:#475569;margin-bottom:10px;">
+                        Readiness Score
+                    </div>
+                    <div style="display:flex;gap:8px;">
+                        <div style="flex:1;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);
+                                    border-radius:8px;padding:8px;text-align:center;">
+                            <div style="font-size:1.1rem;font-weight:700;color:#f87171;">{high_p}</div>
+                            <div style="font-size:0.65rem;color:#64748b;margin-top:1px;">High Priority</div>
+                        </div>
+                        <div style="flex:1;background:rgba(100,116,139,0.08);border:1px solid rgba(100,116,139,0.15);
+                                    border-radius:8px;padding:8px;text-align:center;">
+                            <div style="font-size:1.1rem;font-weight:700;color:#94a3b8;">{missing}</div>
+                            <div style="font-size:0.65rem;color:#64748b;margin-top:1px;">Missing</div>
+                        </div>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
+
+            if st.button("🔄  New Analysis", use_container_width=True, type="secondary"):
+                for k in ["analysis_complete","gap_matrix","readiness_score",
+                          "market_frequencies","roadmap","messages",
+                          "resume_text","jds","selected_preset"]:
+                    st.session_state.pop(k, None)
+                st.rerun()
+        else:
+            st.markdown("""
+                <div style="background:rgba(99,102,241,0.05);border:1px solid rgba(99,102,241,0.12);
+                            border-radius:12px;padding:14px;font-size:0.78rem;color:#64748b;
+                            line-height:1.5;text-align:center;">
+                    Complete Setup &amp; Run to see your analysis summary here.
+                </div>
+            """, unsafe_allow_html=True)
+
+        st.divider()
+
+        # Stack
+        st.markdown("""
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;
+                        text-transform:uppercase;color:#334155;margin-bottom:10px;">
+                Powered by
             </div>
-            <div class="feature-box emerald">
-                <div style="font-size: 2.2rem; margin-bottom: 10px;">🛡️</div>
-                <h4 style="color:#f8fafc; font-size:1.15rem; margin-bottom:5px; font-weight: 800;">Central Command</h4>
-                <p style="color:#94a3b8; font-size:0.95rem; line-height: 1.4;">Live telemetry tracking and dynamic pre-computation dataset injection.</p>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="font-size:0.78rem;color:#475569;">🤖 Google Gemini 3.5</div>
+                <div style="font-size:0.78rem;color:#475569;">🗄️ Supabase</div>
+                <div style="font-size:0.78rem;color:#475569;">📊 Plotly</div>
             </div>
         """, unsafe_allow_html=True)
+
 
 def main():
     if not os.getenv("GEMINI_API_KEY"):
-        st.warning("⚠️ GEMINI_API_KEY not found in .env")
-        
-    if "authenticated" not in st.session_state:
-        st.session_state["authenticated"] = False
-        
-    if not st.session_state["authenticated"]:
-        render_auth_page()
-    else:
-        user_email = st.session_state.get('user_email', "")
-        
-        # Universal Sign-Out Button
-        st.sidebar.markdown("<br>", unsafe_allow_html=True)
-        st.sidebar.markdown(f"<div style='font-size:0.8rem; color:#94a3b8; letter-spacing:1px; text-transform:uppercase;'>ACTIVE SESSION</div>", unsafe_allow_html=True)
-        st.sidebar.markdown(f"<div style='font-weight:700; color:#38bdf8; margin-bottom:15px; word-break:break-all;'>{user_email}</div>", unsafe_allow_html=True)
-        
-        if st.sidebar.button("🚪 Disconnect Session", use_container_width=True):
-            for key in list(st.session_state.keys()):
-                del st.session_state[key]
-            st.rerun()
-            
-        # Secure Role Based Access Control (RBAC) 
-        is_admin = False
-        if st.session_state.get("is_admin_session", False):
-            is_admin = True
-        else:
-            env_admin = os.getenv("ADMIN_EMAIL")
-            if env_admin:
-                is_admin = (user_email.lower() == env_admin.strip().lower())
-            else:
-                # Fallback if .env is missing the variable
-                is_admin = "admin" in user_email.lower()
-        
-        if is_admin:
-            st.sidebar.divider()
-            st.sidebar.markdown("### 🛡️ Admin Module Active")
-            
-            from src.ui.admin_dashboard import render_admin_dashboard
-            render_admin_dashboard()
-        else:
-            render_dashboard()
+        st.warning("**GEMINI_API_KEY** not found — add it to your `.env` file.", icon="⚠️")
+
+    render_sidebar()
+    render_dashboard()
+
 
 if __name__ == "__main__":
     main()

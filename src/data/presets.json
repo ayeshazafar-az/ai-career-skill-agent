@@ -17,6 +17,42 @@
                 "**Role:** Machine Learning Engineer / Data Scientist\n**Experience:** 2+ years\n\n**What you'll do:**\n- Develop predictive models and deploy them to production.\n\n**Key Skills:**\n- Must know Python deeply.\n- Experience with AWS SageMaker and SQL.\n- Natural Language Processing (NLP) experience is a big plus.\n- BS or higher in highly quantitative field.",
                 "**Role:** Senior Data Scientist\n**Experience:** 5+ years\n**Degree:** PhD or MS in quantitative discipline\n\n**Requirements:**\n- R or Python programming.\n- Strong statistical foundation and A/B testing experience.\n- Experience with Snowflake data warehousing.\n- Git code management in team environments."
             ]
+        },
+        {
+            "id": "ml_engineer",
+            "name": "ML Engineer",
+            "job_descriptions": [
+                "**Role:** Machine Learning Engineer\n**Experience:** 3+ years\n**Education:** BS/MS in Computer Science, Mathematics, or related field\n\n**Responsibilities:**\n- Design, build, and deploy machine learning models at scale.\n- Collaborate with data scientists to productionise ML pipelines.\n\n**Required Skills:**\n- Proficiency in Python and ML frameworks: PyTorch or TensorFlow.\n- Experience with MLOps tools: MLflow, Kubeflow, or similar.\n- Strong knowledge of Docker and Kubernetes for model serving.\n- Cloud platforms: AWS SageMaker, GCP Vertex AI, or Azure ML.\n- Solid understanding of data pipelines and feature engineering.",
+                "**Role:** Senior ML Engineer\n**Experience:** 4-7 years\n\n**About the Role:**\nWe are building next-generation AI products and need an ML Engineer to own the full model lifecycle.\n\n**Key Qualifications:**\n- Deep experience with LLMs, transformers, and fine-tuning (Hugging Face).\n- Python, Pandas, NumPy — must be second nature.\n- Experience with vector databases (Pinecone, Weaviate, or Chroma).\n- CI/CD for ML pipelines, automated retraining workflows.\n- SQL and experience querying large-scale data warehouses.",
+                "**Role:** Applied ML / AI Engineer\n**Experience:** 2+ years\n\n**Requirements:**\n- Hands-on experience building and deploying NLP or computer vision models.\n- Strong Python skills with PyTorch or TensorFlow.\n- Familiarity with REST API development for model serving (FastAPI or Flask).\n- Experience with A/B testing and model performance monitoring.\n- Git, DVC for reproducible ML experiments.\n- AWS or GCP cloud infrastructure experience."
+            ]
+        },
+        {
+            "id": "devops_engineer",
+            "name": "DevOps Engineer",
+            "job_descriptions": [
+                "**Role:** DevOps Engineer\n**Experience:** 3+ years\n**Education:** BS in Computer Science, Engineering, or equivalent experience\n\n**Responsibilities:**\n- Build and maintain CI/CD pipelines for multiple engineering teams.\n- Manage cloud infrastructure and ensure high availability.\n\n**Required Skills:**\n- Strong experience with Docker and Kubernetes (K8s).\n- CI/CD tools: Jenkins, GitHub Actions, or GitLab CI.\n- Cloud platforms: AWS (EC2, S3, RDS, Lambda) or GCP or Azure.\n- Infrastructure as Code: Terraform or Pulumi.\n- Linux system administration and scripting (Bash, Python).",
+                "**Role:** Site Reliability Engineer / DevOps\n**Experience:** 2-5 years\n\n**What you'll do:**\n- Maintain and scale distributed systems serving millions of users.\n- Drive automation to eliminate toil across the engineering org.\n\n**Key Qualifications:**\n- Kubernetes cluster management and Helm charts.\n- Prometheus, Grafana, and ELK stack for observability and logging.\n- Strong scripting skills in Python or Bash.\n- Experience with AWS or Azure infrastructure.\n- GitOps practices with ArgoCD or Flux.\n- Security best practices: IAM, secrets management (Vault).",
+                "**Role:** Cloud Infrastructure Engineer\n**Experience:** 4+ years\n\n**Requirements:**\n- Deep expertise in AWS or Azure cloud architecture.\n- Terraform for infrastructure provisioning and state management.\n- Container orchestration with Kubernetes and Docker.\n- Networking fundamentals: VPC, load balancers, DNS, firewalls.\n- Python or Go scripting for automation.\n- Database administration: PostgreSQL, Redis.\n- Experience with cost optimisation and cloud resource management."
+            ]
+        },
+        {
+            "id": "ui_ux_designer",
+            "name": "UI/UX Designer",
+            "job_descriptions": [
+                "**Role:** UI/UX Designer\n**Experience:** 2+ years\n**Education:** Degree in Design, HCI, or related field\n\n**Responsibilities:**\n- Lead end-to-end product design from discovery to delivery.\n- Create wireframes, prototypes, and high-fidelity designs.\n\n**Required Skills:**\n- Proficiency in Figma (components, auto layout, design systems).\n- Strong portfolio demonstrating user-centred design process.\n- Experience conducting user research and usability testing.\n- Solid understanding of responsive design and accessibility (WCAG).\n- Ability to collaborate closely with front-end engineers.",
+                "**Role:** Product Designer\n**Experience:** 3-5 years\n\n**About the Role:**\nJoin our design team to shape the experience of a fast-growing SaaS product.\n\n**Key Qualifications:**\n- Expert-level Figma skills including design systems and component libraries.\n- Experience with user research methods: interviews, surveys, A/B testing.\n- Motion design and micro-interaction prototyping (Figma or Framer).\n- Strong communication skills — ability to present and defend design decisions.\n- Familiarity with front-end basics: HTML, CSS, React component structure.\n- Experience with analytics tools: Mixpanel, Hotjar, or FullStory.",
+                "**Role:** Senior UX Designer\n**Experience:** 5+ years\n\n**Requirements:**\n- Deep expertise in information architecture and interaction design.\n- Proficiency in Figma and prototyping tools (Framer, Principle).\n- Proven track record of conducting and synthesising user research.\n- Experience building and maintaining scalable design systems.\n- Strong understanding of mobile UX patterns (iOS and Android guidelines).\n- Collaboration with PMs and engineers in Agile/Scrum environment.\n- Data-driven design: ability to define and measure UX KPIs."
+            ]
+        },
+        {
+            "id": "product_manager",
+            "name": "Product Manager",
+            "job_descriptions": [
+                "**Role:** Product Manager\n**Experience:** 3+ years\n**Education:** BS in Business, CS, Engineering, or related field\n\n**Responsibilities:**\n- Own the product roadmap and prioritise features based on user needs and business goals.\n- Work cross-functionally with engineering, design, and marketing.\n\n**Required Skills:**\n- Strong experience with product roadmapping and backlog management (Jira, Linear).\n- Proficiency in writing detailed PRDs and user stories.\n- Experience with data analysis tools: SQL, Mixpanel, or Amplitude.\n- Excellent stakeholder communication and presentation skills.\n- Understanding of Agile and Scrum methodologies.",
+                "**Role:** Technical Product Manager\n**Experience:** 2-5 years\n\n**About the Role:**\nWe are looking for a PM who can bridge the gap between technical teams and business stakeholders.\n\n**Key Qualifications:**\n- Technical background or strong working knowledge of software development.\n- Experience with A/B testing and feature flag tools.\n- Data fluency: SQL queries, dashboard creation (Looker, Tableau, or similar).\n- Strong written and verbal communication skills.\n- Experience working directly with engineering teams in sprint planning.\n- Knowledge of REST APIs and system architecture concepts.",
+                "**Role:** Senior Product Manager\n**Experience:** 5+ years\n\n**Requirements:**\n- Proven track record of launching successful B2B or B2C products.\n- Deep expertise in user research, competitive analysis, and market sizing.\n- Strong data analysis skills: SQL, Excel/Sheets, and product analytics platforms.\n- Experience defining OKRs and KPIs and tracking product outcomes.\n- Excellent leadership and mentoring skills.\n- Familiarity with UX design tools (Figma) and ability to give design feedback.\n- Experience with go-to-market strategy and working with sales and marketing."
+            ]
         }
     ]
 }
