@@ -1,3 +1,7 @@
+# Kiro agent files
+.agents/
+.kiro/
+
 # Environment variables — never commit secrets
 .env
 .env.*
