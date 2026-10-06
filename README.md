@@ -10,6 +10,10 @@ SkillGap AI compares your resume against real job market demands using Google Ge
 
 <br/>
 
+### 🚀 [**Try the Live Demo Here**](https://ai-career-skill-agent-11.streamlit.app/)
+
+<br/>
+
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.36-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io)
 [![Gemini](https://img.shields.io/badge/Google_Gemini-3.5_Flash-4285F4?style=flat-square&logo=google&logoColor=white)](https://ai.google.dev)
